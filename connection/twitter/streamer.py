@@ -1,5 +1,8 @@
 from tweepy import Stream, OAuthHandler
 from tweepy.streaming import StreamListener
+from geopy.geocoders import Nominatim, Photon
+
+from http.client import IncompleteRead
 
 CONSUMER_KEY = "4YZgGzc5bB4jMwoTJBDXKy8gp"
 CONSUMER_SECRET = "PiQosIV3Lnss42kf52UNvOkFY0e1k2YX4XX7oqp3Pb6LkKCHvE"
@@ -12,9 +15,19 @@ class BasicListener(StreamListener):
     """ A listener handles tweets are the received from the stream. """
     def on_status(self, status):
         #if status.coordinates != None:
-        self.k+=1
-        print(self.k)
-        print(status.user.location)
+            try:
+                if status.user.location != None:
+                    geolocator = Nominatim()
+                    location = geolocator.geocode(status.user.location)
+                    #print(status.user.location,"=",(location.latitude, location.longitude))
+                    print((location.latitude, location.longitude))
+            except:
+                pass
+            self.k+=1
+            #print(self.k)
+            #print(status.user.location)
+
+
 
     #def on_data(self, data):
         # print received tweet to stdout
@@ -24,6 +37,7 @@ class BasicListener(StreamListener):
         # print error when data is not correctly
         # received
         print("Error: " + status)
+        return True
 
 if __name__ == '__main__':
     # authentication
@@ -32,8 +46,7 @@ if __name__ == '__main__':
     # listener instance
     listen = BasicListener()
     # open connection
-    stream = Stream(auth, listen, gzip=True)
-    # start receiving data
-    #stream.filter(track=['car'])
+    geolocator = Nominatim()
+    stream = Stream(auth, listen, gzip=True, timeout=None)
     stream.sample()
     #stream.firehose(count=200)
