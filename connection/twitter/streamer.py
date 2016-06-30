@@ -13,6 +13,10 @@ ACCESS_SECRET = "LH0bWWAFxPQdICGw883loEO1eVMIhSUz0w6ViVRF8wFDM"
 
 class BasicListener(StreamListener):
     """ A listener handles tweets are the received from the stream. """
+    def on_connect(self):
+        """Called when the connection is made"""
+        print("Connection to stream accomplished.")
+
     def on_status(self, status):
         if status.user.location != None:
             #print(status.user.location)
@@ -34,19 +38,15 @@ class BasicListener(StreamListener):
         return True  # Don't kill the stream
         print("Stream restarted")
 
-#class Tweet(tweet):
-    #tweet.user.location
-    #pass
-
 if __name__ == '__main__':
     # authentication
     auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
     # listener instance
-    print("Create Listencer Instance")
+    #print("Create Listencer Instance")
     listen = BasicListener()
     # open connection
-    print("Open connection")
+    #print("Open connection")
     stream = Stream(auth, listen, gzip=True, timeout=None)
     stream.sample()
 
