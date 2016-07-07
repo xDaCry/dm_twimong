@@ -1,15 +1,11 @@
-from tweepy import Stream, OAuthHandler
+from tweepy import Stream, OAuthHandler, API
 from tweepy.streaming import StreamListener
 #from geopy import geocoders
 import sys
 #import time
 #from http.client import IncompleteRead
 
-CONSUMER_KEY = "f8rxzhS2b7WL24Mg0kkhaY0MY"
-CONSUMER_SECRET = "XdIJjqNkx4cc9b0tIFk7RYnEN7zAqZIJbewagPlfCij6dPfc7G"
-
-ACCESS_KEY = "231255197-bGPXUvjSkRR6HxLIsdxWstVQdNNtfMCZm4Z7EeeH"
-ACCESS_SECRET = "LH0bWWAFxPQdICGw883loEO1eVMIhSUz0w6ViVRF8wFDM"
+from connection.twitter.config import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
 
 class BasicListener(StreamListener):
     """ A listener handles tweets are the received from the stream. """
@@ -43,11 +39,22 @@ if __name__ == '__main__':
     auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
     # listener instance
-    #print("Create Listencer Instance")
     listen = BasicListener()
+    # settings for API
+    api = API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, retry_count=10, retry_delay=5,
+              retry_errors=5)
     # open connection
-    #print("Open connection")
-    stream = Stream(auth, listen, gzip=True, timeout=None)
+    stream = Stream(auth=api.auth, listener=listen, gzip=True, timeout=None)
     stream.sample()
 
-
+def start_stream():
+    auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+    # listener instance
+    listen = BasicListener()
+    # settings for API
+    api = API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True, retry_count=10, retry_delay=5,
+                     retry_errors=5)
+    # open connection
+    stream = Stream(auth=api.auth, listener = listen, gzip=True, timeout=None)
+    stream.sample()
