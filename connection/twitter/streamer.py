@@ -12,7 +12,7 @@ class TwitterStreamListener(tweepy.StreamListener):
         post = collection.insert_one(status._json).inserted_id
         print(post)
         #if status.user.location != None:
-            # print(status.user.location)
+            #print(status.user.location)
             # print(status.entities.get('hashtags'))
             #print(status.source)
             # geolocator = geocoders.GoogleV3
@@ -47,7 +47,9 @@ def start_stream():
 
     while True:
         try:
-            myStream.sample(async=True)
+            myStream.filter(locations=[-180,-90,180,90], async=True)
+            #myStream.firehose(async=True)
+            #myStream.sample(async=True)
         except:
             pass
 
