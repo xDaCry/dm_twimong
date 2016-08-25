@@ -7,10 +7,10 @@ This project was initiated by having own interest in this subject, aswell as cre
 ### The goal of this project is:
 
 - [x] Collecting data from twitter streams
-- [ ] Store the data in different data bases (NoSQL and RDBMS)
--- [ ] MongoDB
--- [ ] MariaDB
--- [ ] MySQL
+- [ ] Store the data in different data bases (NoSQL and RDBMS) 
+- &nbsp;&nbsp; [x] MongoDB
+- &nbsp;&nbsp; [ ] MariaDB
+- &nbsp;&nbsp; [ ] MySQL
 - [ ] Analyze the data for different scenarios (language, hashtags etc.)
 - [ ] Visualize the data stored (location) - HeatMap
 - [ ] Perform analysis wether a MongoDB, MySQL or MariaDB is the best choice to store the data
