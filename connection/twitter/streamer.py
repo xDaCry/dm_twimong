@@ -15,7 +15,7 @@ class TwitterStreamListener(tweepy.StreamListener):
             "lang": status.lang,
             "coordinates": status.coordinates,
             "source": re.sub("\\\u003C.*?\\\u003E", '', status.source)
-            "hashtags": status.entities.get('hashtags')
+            #"hashtags": status.entities.get('hashtags')
             }, sort_keys=True)
             
         #post = collection.insert_one(status._json).inserted_id
