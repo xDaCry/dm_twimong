@@ -1,7 +1,10 @@
+import json
+import re
 import tweepy
 from connection.mongodb.mongodbConnection import collection
 
 from connection.twitter.config import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
+
 
 class TwitterStreamListener(tweepy.StreamListener):
     """ A listener handles tweets are the received from the stream.
@@ -9,19 +12,20 @@ class TwitterStreamListener(tweepy.StreamListener):
     """
 
     def on_status(self, status):
-        post = collection.insert_one(status._json).inserted_id
-        print(post)
-        #if status.user.location != None:
-            #print(status.user.location)
-            # print(status.entities.get('hashtags'))
-            #print(status.source)
-            # geolocator = geocoders.GoogleV3
-            # location = geolocator.geocode(status.user.location)
-            # print(status.user.location,"=",(location.latitude, location.longitude))
-            # print((location.latitude, location.longitude))
-            # time.sleep(1)
+        post = collection.insert_one(json.dumps({
+            "lang": status.lang,
+            "coordinates": status.coordinates,
+            "source": re.sub("\\\u003C.*?\\\u003E", '', status.source)
+            # "hashtags": status.entities.get('hashtags')
+        }, sort_keys=True))
 
-    # Twitter error list : https://dev.twitter.com/overview/api/response-codes
+        # post = collection.insert_one(status._json).inserted_id
+        print(post)
+        # if status.user.location != None:
+        # print(status.user.location)
+        # print(status.entities.get('hashtags'))
+
+        # Twitter error list : https://dev.twitter.com/overview/api/response-codes
 
     def on_error(self, status_code):
         if status_code == 403:
@@ -29,12 +33,8 @@ class TwitterStreamListener(tweepy.StreamListener):
             return False
 
 
-    #def on_error(self, status_code):
-    #    print >> sys.stderr, 'Encountered error with status code:', status_code
-    #    return True # Don't kill the stream
-    #    print("Stream restarted")
-
-def start_stream():
+#def start_stream():
+if __name__ == '__main__':
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
@@ -48,10 +48,6 @@ def start_stream():
     while True:
         try:
             myStream.filter(locations=[-180,-90,180,90], async=True)
-            #myStream.firehose(async=True)
             #myStream.sample(async=True)
         except:
             pass
-
-if __name__ == '__main__':
-    start_stream()
