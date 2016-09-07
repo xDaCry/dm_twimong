@@ -1,4 +1,5 @@
 import json
+import re
 import tweepy
 from connection.mongodb.mongodbConnection import collection
 
@@ -13,7 +14,7 @@ class TwitterStreamListener(tweepy.StreamListener):
         post = collection.insert_one(json.dumps({
             "lang": status.lang,
             "coordinates": status.coordinates,
-            "source": status.source
+            "source": re.sub("\\\u003C.*?\\\u003E", '', status.source)
             "hashtags": status.entities.get('hashtags')
             }, sort_keys=True)
             
