@@ -1,0 +1,12 @@
+{
+  "name": "starter-node-angular",
+  "main": "server.js",
+  "version": "1.0.1",
+  "dependencies": {
+    "express": "^4.4.5",
+    "minimist": "^1.2.0",
+    "minimist-options": "^1.0.0",
+    "mongodb": "^2.2.9",
+    "ws": "0.4.x"
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1,maximum-scale=1"/>
+      <title>D3 Twitter Geo Stream</title>
+      <link rel="stylesheet" type="text/css" href="./static/css/custom.css"/>
+      <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="./static/css/keen-dashboards.css" />
+      <script src="./static/lib/js/d3.v3.min.js"></script>
+      <script src="./static/lib/js/topojson.v1.min.js"></script>
+      <script src="./static/js/bar-chart.js"></script>
+      <script src="./static/js/map.js"></script>
+      <script src="./static/js/source-chart.js"></script>
+      <script src="./static/js/graphs.js"></script>
+   </head>
+   <body onload="streamGeoDataOnPort(5000)">
+      <h1>Entwicklung verteilter Anwendungen - dm_twimong</h1>
+      <div class="container-fluid">
+         <table class="columns">
+           <tr>
+             <td>
+            <div class="chart-title">
+               Live - Map of Tweets
+            </div>
+            <div class="chart-stage">
+               <div id="map" style="border: 5px solid #ccc"></div>
+            </div>
+           </td>
+           </tr>
+           </table>
+         </table>
+         <table class="columns">
+            <tr>
+               <td>
+                  <div class="chart-title">
+                     Impressions by language
+                  </div>
+                  <div class="chart-stage">
+                     <div id="bar-chart" style="border: 5px solid #ccc"></div>
+                  </div>
+               </td>
+               <td>
+                  <div class="chart-title">
+                     Impressions by source
+                  </div>
+                  <div class="chart-stage">
+                     <div id="source-chart" style="border: 5px solid #ccc"></div>
+                  </div>
+               </td>
+            </tr>
+         </table>
+      </table>
+      </div>
+   </body>
+</html>

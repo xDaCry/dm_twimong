@@ -1,42 +1,29 @@
-queue()
-    .defer(d3.json, "/data/tweets")
-    .await(makeGraphs);
+function streamGeoDataOnPort(port) {
+	var colors = d3.scale.category20();
+    var map = worldMap('#map', colors);
+    var barChart = countryCountBarChart('#bar-chart', colors);
+    var sourceChart = sourceCountBarChart('#source-chart', colors);
+    startListeningForGeoData(port);
 
-function makeGraphs(error, projectsJson) {
+    function startListeningForGeoData(port) {
+        var webSocket = new WebSocket(hostURL(port));
+        webSocket.onmessage = function(event) {
+        var geoData = JSON.parse(event.data);
+            if (geoData.coordinates != null) {
+                addGeoData(geoData);
+            }
+        };
+    }
 
-	//Clean projectsJson data
-	var donorschooseProjects = projectsJson;
+    function hostURL(port) {
+        return 'ws://' + location.hostname + ':' + port;
+    }
 
-	//Create a Crossfilter instance
-	var ndx = crossfilter(donorschooseProjects);
-
-	//Define Dimensions
-	var langDim = ndx.dimension(function(d) { return d["lang"]; });
-
-	//Calculate metrics
-	var langGroup = langDim.group();
-    var langGroupTop = getTops(langGroup);
-
-	var all = ndx.groupAll();
-
-    //Charts
-	var langTypeChart = dc.rowChart("#resource-type-row-chart");
-	var numberTweets = dc.numberDisplay("#number-projects-nd");
-
-	numberTweets
-		.formatNumber(d3.format("d"))
-		.valueAccessor(function(d){return d; })
-		.group(all);
-
-	langTypeChart
-        .width(300)
-        .height(250)
-        .dimension(langDim)
-        .group(langGroupTop)
-        .xAxis().ticks(4);
-
-
-    dc.renderAll();
+    function addGeoData(geoData) {
+        barChart.addGeoData(geoData);
+        map.addGeoData(geoData);
+        sourceChart.addGeoData(geoData);
+    }
 
     function getTops(source_group) {
     return {
@@ -45,9 +32,4 @@ function makeGraphs(error, projectsJson) {
         }
     };
     }
-        setInterval(function(){
-        //dc.renderAll();
-        dc.redrawAll();
-        //window.location.reload(1);
-    }, 5000);
 };

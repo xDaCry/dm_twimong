@@ -12,12 +12,14 @@ class TwitterStreamListener(tweepy.StreamListener):
     """
 
     def on_status(self, status):
-        post = collection.insert_one(json.dumps({
-            "lang": status.lang,
-            "coordinates": status.coordinates,
-            "source": re.sub("\\\u003C.*?\\\u003E", '', status.source)
+        data = json.dumps({
+            'lang': status.lang,
+            'coordinates': status.coordinates,
+            'source': re.sub("\\\u003C.*?\\\u003E", '', status.source)
             # "hashtags": status.entities.get('hashtags')
-        }, sort_keys=True))
+        }, sort_keys=True)
+
+        post = collection.insert_one(json.loads(data)).inserted_id
 
         # post = collection.insert_one(status._json).inserted_id
         print(post)

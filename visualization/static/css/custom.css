@@ -1,12 +1,25 @@
-#number-projects-nd {
-    font-size: 60px;
+body {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-#total-donations-nd {
-    font-size: 60px;
+svg {
+  border: 1px solid #aaa;
 }
 
-.dc-chart g.row text {
-    fill: black;
-    font-size: 12px;
+.land {
+  fill: #eee;
+}
+
+.boundary {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: .5px;
+}
+
+.point {
+  opacity: 0.3;
+}
+
+.radar-ping {
+  fill: none;
 }
