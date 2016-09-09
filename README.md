@@ -31,3 +31,16 @@ This project was initiated by having own interest in this subject, aswell as cre
 - [x] Start the http-server as shown in [2]
 - [x] Start the streamer.py
 - [x] Go to http://localhost:8000 to see the visualization
+
+## [1] - Start websocket server:
+
+- Start Node.js command prompt
+- Direct the cursor to ../dm_twimong/visualization
+- npm start
+
+
+## [1] - Start websocket server:
+
+- Start Node.js command prompt
+- Direct the cursor to ../dm_twimong/visualization
+- http-server -p 8000
