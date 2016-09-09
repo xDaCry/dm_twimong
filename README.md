@@ -36,11 +36,15 @@ This project was initiated by having own interest in this subject, aswell as cre
 
 - Start Node.js command prompt
 - Direct the cursor to ../dm_twimong/visualization
-- npm start
+```
+npm start
+```
 
 
 ## [2] - Start http-server:
 
 - Start Node.js command prompt
 - Direct the cursor to ../dm_twimong/visualization
-- http-server -p 8000
+```
+http-server -p 8000
+```
