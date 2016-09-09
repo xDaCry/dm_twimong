@@ -21,7 +21,7 @@ This project was initiated by having own interest in this subject, aswell as cre
 =============
 ### The project is seperated in different packages:
 
-> **anaylze**: This package includes all the queries for analyzing the data stored in databases,
+> **analyze**: This package includes all the queries for analyzing the data stored in databases,
 
 > **connection**: This package includes all the classes for creating connections to databases and the twitter stream.
 
