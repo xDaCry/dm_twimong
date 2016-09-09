@@ -39,7 +39,7 @@ This project was initiated by having own interest in this subject, aswell as cre
 - npm start
 
 
-## [1] - Start websocket server:
+## [2] - Start http-server:
 
 - Start Node.js command prompt
 - Direct the cursor to ../dm_twimong/visualization
