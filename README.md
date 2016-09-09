@@ -7,13 +7,10 @@ This project was initiated by having own interest in this subject, aswell as cre
 ### The goal of this project is:
 
 - [x] Collecting data from twitter streams
-- [ ] Store the data in different data bases (NoSQL and RDBMS) 
-- &nbsp;&nbsp; [x] MongoDB
-- &nbsp;&nbsp; [ ] MariaDB
-- &nbsp;&nbsp; [ ] MySQL
-- [ ] Analyze the data for different scenarios (language, hashtags etc.)
-- [ ] Visualize the data stored (location) - HeatMap
-- [ ] Perform analysis wether a MongoDB, MySQL or MariaDB is the best choice to store the data
+- [x] Store the data in a MongoDB (NoSQL and RDBMS) 
+- [x] Analyze the data for different scenarios (language, hashtags etc.)
+- [x] Visualize the data stored /javascript
+- [ ] make it pretty!
  
 =============
 ### The project is seperated in different packages:
@@ -21,3 +18,5 @@ This project was initiated by having own interest in this subject, aswell as cre
 > **anaylze**: This package includes all the queries for analyzing the data stored in databases,
 
 > **connection**: This package includes all the classes for creating connections to databases and the twitter stream.
+
+> **visualization**: This package includes all the classes for visualizing the data stored (Javascript based including D3.js, AngularJs and Websocket)
