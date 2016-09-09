@@ -29,8 +29,8 @@ This project was initiated by having own interest in this subject, aswell as cre
 - [x] Start MongoDB
 - [x] Start the websocket server as shown in [1]
 - [x] Start the http-server as shown in [2]
-- [x] Start the streamer.py
-- [x] Go to http://localhost:8000 to see the visualization
+- [x] Start the ```streamer.py```
+- [x] Go to ```http://localhost:8000``` to see the visualization
 
 ## [1] - Start websocket server:
 
