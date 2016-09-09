@@ -1,7 +1,13 @@
-# dm_twimong - Having fun with the twitter API
+# dm_twimong - Having fun with the Twitter API
 
 Welcome people to joining my idea of data mining the twitter data given by their API. <br />
 This project was initiated by having own interest in this subject, aswell as creating a project for a seminar at university.
+
+=============
+### Technologies including this project:
+- Python 3.5
+- MongoDB 3.2.9
+- JavaScript (D3.js, topojson, WebSocket)
 
 =============
 ### The goal of this project is:
