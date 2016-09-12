@@ -1,4 +1,4 @@
-function sourceCountBarChart(barChartSelector, colors) {
+function hashtagsCountPieChart(barChartSelector, colors) {
   var countryCount = {};
   var width = 350;
   var height = 250;
@@ -35,15 +35,15 @@ function sourceCountBarChart(barChartSelector, colors) {
 
   function updateBarChart() {
     var dataSet = createBarChartDataSet();
-    dataSet = pickTop5(dataSet);
+    dataSet = pickTop2(dataSet);
     updateScales(dataSet);
     updateBars(dataSet);
     updateBarLabels(dataSet);
   }
 
-  function pickTop5(dataSet) {
+  function pickTop2(dataSet) {
     dataSet.sort(sortDataSet);
-    return dataSet.slice(0, 5);
+    return dataSet.slice(0, 2);
   }
 
   function sortDataSet(a, b) {
@@ -58,10 +58,10 @@ function sourceCountBarChart(barChartSelector, colors) {
 
   function createBarChartDataSet() {
     var dataSet = [];
-    Object.keys(countryCount).forEach(function(source) {
+    Object.keys(countryCount).forEach(function(hashtags) {
       dataSet.push({
-        source: source,
-        count: countryCount[source]
+        hashtags: hashtags,
+        count: countryCount[hashtags]
       });
     });
     return dataSet;
@@ -86,11 +86,11 @@ function sourceCountBarChart(barChartSelector, colors) {
       .attr('width', xScale.rangeBand())
       .attr('height', barHeight)
       .attr('fill', function(d) {
-        var c = colors(d.source);
+        var c = colors(d.hashtags);
         return d3.rgb(c).brighter(0.1);
       })
       .attr('stroke', function(d) {
-        var c = colors(d.source);
+        var c = colors(d.hashtags);
         return d3.rgb(c).darker(0.5);
       });
 
@@ -131,7 +131,7 @@ function sourceCountBarChart(barChartSelector, colors) {
     labels.enter()
       .append('text')
       .text(function(d) {
-        return d.source;
+        return d.hashtags;
       })
       .attr('x', function(d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
@@ -163,20 +163,20 @@ function sourceCountBarChart(barChartSelector, colors) {
   }
 
   var key = function(d) {
-    return d.source;
+    return d.hashtags;
   };
 
   function addGeoData(data) {
-    updateCountryCount(data.source);
+    updateCountryCount(data.hashtags);
   }
 
-  function updateCountryCount(source) {
+  function updateCountryCount(hashtags) {
     var count = 0;
-    if (countryCount[source]) {
-      count = countryCount[source];
+    if (countryCount[hashtags]) {
+      count = countryCount[hashtags];
     }
     count += 1;
-    countryCount[source] = count;
+    countryCount[hashtags] = count;
   }
 
   return {

@@ -12,6 +12,8 @@
       <script src="./static/js/bar-chart.js"></script>
       <script src="./static/js/map.js"></script>
       <script src="./static/js/source-chart.js"></script>
+       <script src="./static/js/pie-chart-hashtags.js"></script>
+       <script src="./static/js/tweet-counter.js"></script>
       <script src="./static/js/graphs.js"></script>
    </head>
    <body onload="streamGeoDataOnPort(5000)">
@@ -47,6 +49,25 @@
                   <div class="chart-stage">
                      <div id="source-chart" style="border: 5px solid #ccc"></div>
                   </div>
+
+               </td>
+                <td>
+                  <div class="chart-title">
+                     Impressions by source
+                  </div>
+                  <div class="chart-stage">
+                     <div id="pie-chart-hashtags" style="border: 5px solid #ccc"></div>
+                  </div>
+
+               </td>
+                <td>
+                  <div class="chart-title">
+                     Impressions by source
+                  </div>
+                  <div class="text">
+                     <div id="counter"></div>
+                  </div>
+
                </td>
             </tr>
          </table>

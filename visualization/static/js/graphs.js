@@ -3,6 +3,8 @@ function streamGeoDataOnPort(port) {
     var map = worldMap('#map', colors);
     var barChart = countryCountBarChart('#bar-chart', colors);
     var sourceChart = sourceCountBarChart('#source-chart', colors);
+    var pieChartHashtags = hashtagsCountPieChart('#pie-chart-hashtags', colors);
+    var tweetCounter = tweetCountPieChart('#counter');
     startListeningForGeoData(port);
 
     function startListeningForGeoData(port) {
@@ -23,6 +25,8 @@ function streamGeoDataOnPort(port) {
         barChart.addGeoData(geoData);
         map.addGeoData(geoData);
         sourceChart.addGeoData(geoData);
+        pieChartHashtags.addGeoData(geoData);
+        tweetCounter.addGeoData(geoData);
     }
 
     function getTops(source_group) {

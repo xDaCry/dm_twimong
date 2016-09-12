@@ -12,20 +12,20 @@ class TwitterStreamListener(tweepy.StreamListener):
     """
 
     def on_status(self, status):
+        if(status.entities.get('hashtags') != []):
+            hashtags = 'yes'
+        else:
+            hashtags = 'no'
+
         data = json.dumps({
             'lang': status.lang,
             'coordinates': status.coordinates,
-            'source': re.sub("\\\u003C.*?\\\u003E", '', status.source)
-            # "hashtags": status.entities.get('hashtags')
+            'source': re.sub("\\\u003C.*?\\\u003E", '', status.source),
+            'hashtags': hashtags
         }, sort_keys=True)
 
         post = collection.insert_one(json.loads(data)).inserted_id
-
-        # post = collection.insert_one(status._json).inserted_id
         print(post)
-        # if status.user.location != None:
-        # print(status.user.location)
-        # print(status.entities.get('hashtags'))
 
         # Twitter error list : https://dev.twitter.com/overview/api/response-codes
 

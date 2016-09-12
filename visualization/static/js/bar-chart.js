@@ -1,6 +1,6 @@
 function countryCountBarChart(barChartSelector, colors) {
   var countryCount = {};
-  var width = 500;
+  var width = 350;
   var height = 250;
   var transitionDuration = 500;
   var exitTransitionDuration = 500;
@@ -119,7 +119,7 @@ function countryCountBarChart(barChartSelector, colors) {
   }
 
   function minimumBarHeight() {
-    return 20;
+    return 100;
   }
 
   function updateBarLabels(dataSet) {
