@@ -25,7 +25,7 @@ class TwitterStreamListener(tweepy.StreamListener):
         }, sort_keys=True)
 
         post = collection.insert_one(json.loads(data)).inserted_id
-        print(post)
+        #print(post)
 
         # Twitter error list : https://dev.twitter.com/overview/api/response-codes
 

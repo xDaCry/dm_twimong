@@ -1,16 +1,16 @@
 function worldMap(mapSelector, colors) {
   var geoData = [];
 
-  var width = 900,
+  var width = 750,
       height = 400,
       translate = [width / 2, height / 2];
 
   var projection = d3.geo.equirectangular()
-        .scale(125)
+        .scale(115)
         .translate(translate);
-  var startPingRadius = 5,
-      endPingRadius = 10,
-      pingThickness = 1;
+  var startPingRadius = 2,
+      endPingRadius = 5,
+      pingThickness = 0.5;
   var arc = d3.svg.arc()
         .outerRadius(startPingRadius)
         .innerRadius(startPingRadius - pingThickness);
