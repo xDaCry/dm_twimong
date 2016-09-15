@@ -8,6 +8,7 @@ This project was initiated by having own interest in this subject, aswell as cre
 - Python 3.5
 - MongoDB 3.2.9
 - JavaScript (D3.js, topojson, WebSocket)
+- Node.js (6.5)
 
 =============
 ### The goal of this project is:
